@@ -1,0 +1,23 @@
+{
+	"vent_shaft": {
+		"text": "You locate the vent shaft behind a panel in the control room. It's a tight fit, but you pull yourself through.\n\nThe shaft climbs steeply. Your arms burn but you keep going. After a grueling climb, you kick out a grate and tumble onto a concrete floor.\n\nYou're in a garage. A rusted truck sits by a large roller door. Moonlight seeps through the cracks.",
+		"choices": [
+			{"text": "Pry the roller door open with brute force", "next": "exit_door", "require_stat": "Strength", "require_value": 5},
+			{"text": "Try to open the roller door", "next": "exit_door"},
+			{"text": "Search the truck", "next": "search_truck"}
+		]
+	},
+	"search_truck": {
+		"text": "The truck's cabin is unlocked. Inside you find keys in the ignition and a map with a route marked to a nearby town. But the garage roller door has an electronic lock — it needs a keycard to open.",
+		"choices": [
+			{"text": "Swipe the keycard and drive out", "next": "truck_escape", "require_item": "Keycard"},
+			{"text": "Go back — you need to find a keycard", "next": "metal_door"}
+		]
+	},
+	"truck_escape": {
+		"text": "You swipe the keycard on the roller door panel. It beeps and the door grinds upward, revealing a dirt road under a star-filled sky.\n\nYou turn the key. The engine coughs, sputters, then roars to life. The fuel gauge reads half-full.\n\nYou drive into the night, leaving the facility behind for good.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	}
+}

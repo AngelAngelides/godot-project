@@ -1,0 +1,25 @@
+{
+	"start": {
+		"text": "You wake up in a dimly lit room. The air is damp and smells of rust. A single flickering bulb hangs from the ceiling, casting uneasy shadows across the concrete walls.\n\nYou can hear a faint humming sound coming from behind a heavy metal door to your left. To your right, a narrow corridor stretches into darkness.",
+		"choices": [
+			{"text": "Try the metal door", "stat_check": {"stat": "Strength", "value": 3, "pass": "metal_door_forced", "fail": "metal_door"}},
+			{"text": "Walk down the dark corridor", "next": "corridor"},
+			{"text": "Search the room", "stat_check": {"stat": "Perception", "value": 3, "pass": "search_room_thorough", "fail": "search_room"}}
+		]
+	},
+	"search_room": {
+		"text": "You fumble around the room but don't find much of use. The walls are bare and the floor seems solid. Nothing here but dust and shadows.",
+		"choices": [
+			{"text": "Try the metal door", "next": "metal_door"},
+			{"text": "Head into the corridor", "next": "corridor"}
+		]
+	},
+	"search_room_thorough": {
+		"text": "Your sharp senses guide you. You notice a loose floor tile that others might miss. Underneath, you find a flashlight — still working — and a crumpled note.\n\nThe note reads: 'If you're reading this, don't trust the blue light. The water is the way out. - M'\n\nYou pocket the flashlight and the note.",
+		"gives_item": "Flashlight",
+		"choices": [
+			{"text": "Try the metal door", "next": "metal_door"},
+			{"text": "Head into the corridor with your flashlight", "next": "corridor"}
+		]
+	}
+}

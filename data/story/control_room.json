@@ -1,0 +1,80 @@
+{
+	"metal_door": {
+		"text": "You push against the metal door. It groans but gives way, slowly. Beyond it, you find a small control room filled with old monitors and blinking lights. One screen displays a map of the facility — you appear to be underground.\n\nThere's a cluttered console with blinking monitors and a half-eaten sandwich. There's another door at the far end of the control room marked 'EXIT - AUTHORIZED PERSONNEL ONLY'.",
+		"choices": [
+			{"text": "Search the console", "stat_check": {"stat": "Perception", "value": 3, "pass": "find_keycard", "fail": "console_no_keycard"}},
+			{"text": "Study the map on the monitor", "next": "study_map"},
+			{"text": "Hack into the security system", "next": "hack_security", "require_stat": "Intelligence", "require_value": 4},
+			{"text": "Go back and try the corridor instead", "next": "corridor"}
+		]
+	},
+	"metal_door_forced": {
+		"text": "You slam your shoulder into the metal door. It buckles and flies open with a deafening clang. Your strength surprises even you.\n\nBeyond it, you find a small control room filled with old monitors and blinking lights. One screen displays a map of the facility — you appear to be underground.\n\nThere's a cluttered console and a door at the far end marked 'EXIT - AUTHORIZED PERSONNEL ONLY'.",
+		"choices": [
+			{"text": "Search the console", "stat_check": {"stat": "Perception", "value": 3, "pass": "find_keycard", "fail": "console_no_keycard"}},
+			{"text": "Study the map on the monitor", "next": "study_map"},
+			{"text": "Hack into the security system", "next": "hack_security", "require_stat": "Intelligence", "require_value": 4},
+			{"text": "Go back and try the corridor instead", "next": "corridor"}
+		]
+	},
+	"find_keycard": {
+		"text": "Your sharp eyes spot it immediately — wedged between two monitors, a keycard with 'LEVEL 1 ACCESS' printed on it. You pocket it.\n\nThe console also has a map display and the exit door is right there.",
+		"gives_item": "Keycard",
+		"choices": [
+			{"text": "Try the exit door", "next": "exit_door"},
+			{"text": "Study the map on the monitor", "next": "study_map"},
+			{"text": "Go back and try the corridor instead", "next": "corridor"}
+		]
+	},
+	"console_no_keycard": {
+		"text": "You look over the console but nothing useful catches your eye — just old coffee rings and faded paperwork. The monitors show a map and there's the exit door at the far end.",
+		"choices": [
+			{"text": "Try the exit door", "next": "exit_door"},
+			{"text": "Study the map on the monitor", "next": "study_map"},
+			{"text": "Go back and try the corridor instead", "next": "corridor"}
+		]
+	},
+	"study_map": {
+		"text": "The map shows three levels. You are on Level 2. Level 1 above leads to the surface exit — that must be behind the locked door. Level 3 below is marked in red with the words 'CONTAINMENT - DO NOT ENTER'.\n\nThe corridor from the starting room leads down to Level 3. A vent shaft on the map seems to connect this control room to Level 1 directly.\n\nYou also notice a small armoury marked on this level, just off the main corridor.",
+		"choices": [
+			{"text": "Try the exit door", "next": "exit_door"},
+			{"text": "Try to find the vent shaft", "next": "vent_shaft"},
+			{"text": "Search for the armoury", "next": "find_armoury"},
+			{"text": "Go explore Level 3 through the corridor", "next": "corridor"}
+		]
+	},
+	"hack_security": {
+		"text": "You sit at the console and start working through the security system. The interface is old but familiar — military-grade encryption from the 1990s.\n\nYour fingers fly across the keyboard. Firewalls fall. Passwords crack. Within minutes, you have full access.\n\nThe system reveals everything: floor plans, experiment logs, security camera feeds. You find a camera showing an unlocked emergency exit on this floor — just down a side hallway you hadn't noticed.\n\nYou also find a log entry: 'Subject 7 escaped containment. All personnel evacuate immediately.' The timestamp is three days ago.",
+		"choices": [
+			{"text": "Head to the emergency exit", "next": "exit_door"},
+			{"text": "Download the experiment logs to a USB drive", "next": "download_logs"}
+		]
+	},
+	"download_logs": {
+		"text": "You find a USB drive in the desk drawer and start copying files. The progress bar crawls forward.\n\n80%... 90%... 95%...\n\nA crash echoes from somewhere deep in the facility. The lights flicker.\n\n100%. You grab the drive and run for the emergency exit. The door opens easily and you stumble into the night.\n\nWeeks later, the files you recovered would blow the story wide open. But for now, you just breathe the cool air and walk toward the distant glow of a town.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	},
+	"find_armoury": {
+		"text": "You follow the map's markings down a short side corridor. Behind a reinforced door — thankfully unlocked — you find a small armoury. Most of the racks are empty, but a single pistol remains, along with a magazine of ammunition.\n\nYou check the chamber, load it, and tuck the gun into your waistband. It's heavy and cold against your back, but reassuring.",
+		"gives_item": "Gun",
+		"choices": [
+			{"text": "Head back to the control room", "next": "metal_door"},
+			{"text": "Go explore Level 3 through the corridor", "next": "corridor"}
+		]
+	},
+	"exit_door": {
+		"text": "You reach the heavy door marked 'EXIT - AUTHORIZED PERSONNEL ONLY'. A keycard reader blinks red beside it.",
+		"choices": [
+			{"text": "Swipe the keycard", "next": "exit_escape", "require_item": "Keycard"},
+			{"text": "Go back — you need to find a keycard", "next": "metal_door"}
+		]
+	},
+	"exit_escape": {
+		"text": "You swipe the keycard. A green light blinks and the heavy door slides open with a hiss. Cold night air rushes in.\n\nYou step outside onto a hillside overlooking a quiet valley bathed in moonlight. You're free. Behind you, the facility hums on, indifferent to your escape.\n\nYou take a deep breath and walk into the night.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	}
+}

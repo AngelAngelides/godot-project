@@ -1,0 +1,11 @@
+# Godot 4
+.godot/
+.import/
+mono/
+# OS/Editor
+.DS_Store
+.idea/
+.vscode/
+# Logs/Temp
+*.log
+*.tmp

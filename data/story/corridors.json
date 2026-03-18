@@ -1,0 +1,37 @@
+{
+	"corridor": {
+		"text": "You step into the corridor. The darkness swallows you almost immediately. You trail your hand along the cold wall to guide yourself.\n\nAfter what feels like minutes, you reach a fork. A faint blue glow pulses from the left path. The right path carries the distant echo of dripping water.",
+		"choices": [
+			{"text": "Follow the blue glow", "next": "blue_glow"},
+			{"text": "Follow the sound of water", "next": "water_path"},
+			{"text": "Listen carefully for other sounds", "next": "hidden_passage", "require_stat": "Perception", "require_value": 5},
+			{"text": "Turn back to the starting room", "next": "start"}
+		]
+	},
+	"blue_glow": {
+		"text": "You follow the blue glow and enter a vast underground chamber. Luminescent fungi cover the walls, painting everything in an eerie blue light.\n\nIn the center of the chamber sits a strange crystalline structure, pulsing gently. As you approach, you feel a warmth in your chest and hear whispers at the edge of your mind.\n\nThe crystal seems to be calling to you.",
+		"choices": [
+			{"text": "Touch the crystal", "next": "touch_crystal"},
+			{"text": "Back away and take the water path", "next": "water_path"}
+		]
+	},
+	"touch_crystal": {
+		"text": "You reach out and touch the crystal. A surge of energy courses through you. Visions flash before your eyes — the facility being built, experiments, people in lab coats, something escaping containment.\n\nWhen the visions fade, you realize you can sense the layout of the entire facility. Every door, every path, every exit is clear in your mind.\n\nBut you also sense something else. Something on Level 3. And it knows you're here now.",
+		"choices": [
+			{"text": "Rush to the nearest exit — the water path", "next": "water_path"},
+			{"text": "Descend to Level 3 to face whatever is down there", "next": "level_3"}
+		]
+	},
+	"water_path": {
+		"text": "You follow the sound of water. The tunnel opens into a natural cave where an underground stream flows steadily toward a crack of pale light in the distance.\n\nThe water is knee-deep and cold, but the light ahead is unmistakable — it's daylight. You wade forward, and the crack widens into an opening.\n\nYou emerge at the base of a cliff, squinting in the morning sun. You're free.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	},
+	"hidden_passage": {
+		"text": "You close your eyes and listen. Beyond the blue hum and the dripping water, you catch something else — a faint draft of warm air, coming from a crack in the wall.\n\nYou feel along the rock and find a narrow gap, just wide enough to squeeze through. Beyond it is a forgotten maintenance tunnel, still lit by emergency strips on the floor.\n\nThe tunnel leads steadily upward. After ten minutes of walking, you push through a rusted door and find yourself on the surface — a moonlit clearing in a forest.\n\nNo alarms. No creatures. Just silence and freedom.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	}
+}

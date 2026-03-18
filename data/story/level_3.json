@@ -1,0 +1,35 @@
+{
+	"level_3": {
+		"text": "You descend deeper into the facility. Level 3 is colder. The lights here are red and most are broken.\n\nAt the end of a long hallway, you find a massive containment chamber. The glass is shattered. Whatever was held here is long gone.\n\nBut on the floor, scratched into the metal, are the words: 'WE SHOULD NEVER HAVE DUG THIS DEEP.'\n\nA sound behind you. Breathing. Not your own.",
+		"choices": [
+			{"text": "Raise your gun and fire", "next": "shoot_creature", "require_item": "Gun"},
+			{"text": "Stand your ground and face the creature", "next": "face_creature", "require_stat": "Endurance", "require_value": 5},
+			{"text": "Sprint for the exit", "next": "sprint_exit", "require_stat": "Agility", "require_value": 4},
+			{"text": "Run in a panic", "next": "panic_run"}
+		]
+	},
+	"shoot_creature": {
+		"text": "You spin around, gun already raised. In the red half-light you see it — a towering, gaunt figure with too-long arms and skin like cracked stone.\n\nIt lunges. You fire.\n\nThe shot echoes through the corridor like thunder. The creature staggers, shrieks — a sound like tearing metal — and collapses. It twitches once, then goes still.\n\nYour hands are shaking. But it's dead. You step over the body and find a maintenance ladder behind the containment chamber.\n\nYou climb. You climb until you see sky.\n\nYou emerge into cold, sweet air. Whatever that thing was, it won't follow anyone else.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	},
+	"face_creature": {
+		"text": "You steel yourself and turn around. In the red half-light, you see it — a towering, gaunt figure with too-long arms and skin like cracked stone.\n\nIt tilts its head. Studying you. You don't flinch.\n\nMinutes pass. Or maybe hours. Then it steps aside, revealing a passage behind it — one not on any map. The creature watches as you walk through.\n\nThe passage leads to a ladder. The ladder leads to the sky.\n\nYou emerge into dawn, forever changed by what you faced below.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	},
+	"sprint_exit": {
+		"text": "Your reflexes kick in before your fear does. You pivot and sprint — ducking under pipes, vaulting over debris, taking corners at full speed.\n\nThe breathing follows you, but you're faster. You burst through door after door, up staircases, through a final fire exit —\n\nCold air. Stars. Grass under your feet.\n\nYou don't stop until your legs give out on a hillside, the facility far behind you.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	},
+	"panic_run": {
+		"text": "You run. You run faster than you've ever run, through corridors that blur together, up stairs, through doors — until you burst outside into cold, sweet air.\n\nYou don't stop running until the facility is just a dot on the horizon. You're alive, but shaken to your core.",
+		"choices": [
+			{"text": "Play again", "next": "start"}
+		]
+	}
+}
