@@ -74,21 +74,44 @@ Items are defined in `data/items/items.json`. Each item has an ID, display name,
 - `consumable: true` with `max_uses > 0` means the item has a limited number of uses.
 - `consumable: false` with `max_uses: -1` means the item is unlimited (e.g. keycards, flashlight).
 
-## Exporting to Twine
+## Twine round-trip workflow
 
-You can export the story to a Twine-importable **Twee** file:
+You can export the story to Twine for editing/visualizing, then import it back into the game's JSON files.
+
+### Export to Twine
 
 ```bash
 python3 tools/export_to_twine.py
 ```
 
-This produces `exports/story.twee`. To import it into Twine 2:
+This produces `exports/story.twee`. Import it into Twine 2 via **Library > Import > Import From File** (or **File > Import From File**).
 
-1. Open Twine 2.
-2. Choose **Library > Import > Import From File** (or **File > Import From File**, depending on the version).
-3. Select `exports/story.twee`.
-4. Twine will create a new story with one passage per story node.
+### Import from Twine
 
-This export is designed for **visualizing the story structure** in Twine. Every choice becomes a visible connection between passages, and stat/item conditions are written into the link text so you can see them on the map.
+```bash
+python3 tools/import_from_twine.py path/to/your_story.twee
+```
 
-The exported story is **not playable** in Twine as-is — the stat checks, item gates, and inventory effects are only text annotations. If you later want a fully playable Twine version, you would need to re-implement those mechanics using a Twine story format such as Harlowe or SugarCube.
+This writes per-area JSON files back into `data/story/`. The default input is `exports/story.twee`.
+
+### Annotation convention
+
+The exporter writes the following annotations so the importer can reconstruct the JSON structure. If you edit the story in Twine, keep using the same annotations.
+
+**Passage tags (used for item effects and output file):**
+
+- `area:control_room` — writes this passage to `data/story/control_room.json`
+- `gives_item:Keycard` — maps to JSON `"gives_item": "Keycard"`
+- `uses_item:Gun` — maps to JSON `"uses_item": "Gun"`
+
+**Link annotations (used for choices):**
+
+```twee
+[[Choice text->target]]
+[[Choice text (requires Strength 3+)->target]]
+[[Choice text (requires Keycard)->target]]
+[[Choice text (pass Strength >= 3)->target_pass]]
+[[Choice text (fail Strength < 3)->target_fail]]
+```
+
+A `pass`/`fail` pair with the same base text is merged into one JSON `stat_check` choice. The story is exported for **visualization**, not for playing inside Twine — the annotations are plain text, not macros.

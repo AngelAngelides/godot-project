@@ -25,17 +25,18 @@ OUTPUT_FILE = OUTPUT_DIR / "story.twee"
 
 
 def load_story_nodes() -> dict:
-    """Load and merge all story JSON files into a single node dictionary."""
+    """Load all story JSON files and return node_key -> {source, data}."""
     nodes = {}
     for path in sorted(STORY_DIR.glob("*.json")):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         if not isinstance(data, dict):
             raise ValueError(f"Expected a JSON object in {path}")
+        area = path.stem
         for key, value in data.items():
             if key in nodes:
                 print(f"Warning: duplicate node key '{key}' in {path}")
-            nodes[key] = value
+            nodes[key] = {"source": area, "data": value}
     return nodes
 
 
@@ -98,23 +99,19 @@ def format_choice_lines(choice: dict) -> list[str]:
     return lines
 
 
-def format_passage(node_key: str, node: dict) -> str:
-    """Format one story node as a Twee passage with annotated links."""
+def format_passage(node_key: str, node: dict, area: str) -> str:
+    """Format one story node as a Twee passage with annotated links and tags."""
     name = passage_name(node_key)
     text = node.get("text", "")
     text = text.replace("{player_name}", "$playerName")
 
-    # Inventory effects are appended as parenthetical notes.
-    notes: list[str] = []
+    tags: list[str] = [f"area:{area}"]
     if "gives_item" in node:
-        notes.append(f"(Gives item: {node['gives_item']})")
+        tags.append(f"gives_item:{node['gives_item']}")
     if "uses_item" in node:
-        notes.append(f"(Uses item: {node['uses_item']})")
+        tags.append(f"uses_item:{node['uses_item']}")
 
     body_lines = [escape_twee_text(text)]
-    if notes:
-        body_lines.append("")
-        body_lines.extend(notes)
 
     choice_lines: list[str] = []
     for choice in node.get("choices", []):
@@ -124,7 +121,8 @@ def format_passage(node_key: str, node: dict) -> str:
         body_lines.append("")
         body_lines.extend(choice_lines)
 
-    return f":: {name}\n" + "\n".join(body_lines) + "\n"
+    tag_str = " ".join(tags)
+    return f":: {name} [{tag_str}]\n" + "\n".join(body_lines) + "\n"
 
 
 def build_twee(nodes: dict) -> str:
@@ -139,12 +137,12 @@ def build_twee(nodes: dict) -> str:
     if start_key is None:
         raise ValueError("No 'start' node found in story data")
 
-    passages.append(format_passage(start_key, nodes[start_key]))
+    passages.append(format_passage(start_key, nodes[start_key]["data"], nodes[start_key]["source"]))
 
     for key, node in nodes.items():
         if key.lower() == "start":
             continue
-        passages.append(format_passage(key, node))
+        passages.append(format_passage(key, node["data"], node["source"]))
 
     return "\n".join(passages)
 
