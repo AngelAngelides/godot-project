@@ -73,3 +73,22 @@ Items are defined in `data/items/items.json`. Each item has an ID, display name,
 
 - `consumable: true` with `max_uses > 0` means the item has a limited number of uses.
 - `consumable: false` with `max_uses: -1` means the item is unlimited (e.g. keycards, flashlight).
+
+## Exporting to Twine
+
+You can export the story to a Twine-importable **Twee** file:
+
+```bash
+python3 tools/export_to_twine.py
+```
+
+This produces `exports/story.twee`. To import it into Twine 2:
+
+1. Open Twine 2.
+2. Choose **Library > Import > Import From File** (or **File > Import From File**, depending on the version).
+3. Select `exports/story.twee`.
+4. Twine will create a new story with one passage per story node.
+
+This export is designed for **visualizing the story structure** in Twine. Every choice becomes a visible connection between passages, and stat/item conditions are written into the link text so you can see them on the map.
+
+The exported story is **not playable** in Twine as-is — the stat checks, item gates, and inventory effects are only text annotations. If you later want a fully playable Twine version, you would need to re-implement those mechanics using a Twine story format such as Harlowe or SugarCube.

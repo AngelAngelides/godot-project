@@ -1,0 +1,273 @@
+:: StoryTitle
+Chrono Fallout
+
+:: Start
+You wake up in a dimly lit room. The air is damp and smells of rust. A single flickering bulb hangs from the ceiling, casting uneasy shadows across the concrete walls.
+
+You can hear a faint humming sound coming from behind a heavy metal door to your left. To your right, a narrow corridor stretches into darkness.
+
+[[Try the metal door (pass Strength >= 3)->metal_door_forced]]
+[[Try the metal door (fail Strength < 3)->metal_door]]
+[[Walk down the dark corridor->corridor]]
+[[Search the room (pass Perception >= 3)->search_room_thorough]]
+[[Search the room (fail Perception < 3)->search_room]]
+
+:: metal_door
+You push against the metal door. It groans but gives way, slowly. Beyond it, you find a small control room filled with old monitors and blinking lights. One screen displays a map of the facility — you appear to be underground.
+
+There's a cluttered console with blinking monitors and a half-eaten sandwich. There's another door at the far end of the control room marked 'EXIT - AUTHORIZED PERSONNEL ONLY'.
+
+[[Search the console (pass Perception >= 3)->find_keycard]]
+[[Search the console (fail Perception < 3)->console_no_keycard]]
+[[Study the map on the monitor->study_map]]
+[[Hack into the security system (requires Intelligence 4+)->hack_security]]
+[[Go back and try the corridor instead->corridor]]
+
+:: metal_door_forced
+You slam your shoulder into the metal door. It buckles and flies open with a deafening clang. Your strength surprises even you.
+
+Beyond it, you find a small control room filled with old monitors and blinking lights. One screen displays a map of the facility — you appear to be underground.
+
+There's a cluttered console and a door at the far end marked 'EXIT - AUTHORIZED PERSONNEL ONLY'.
+
+[[Search the console (pass Perception >= 3)->find_keycard]]
+[[Search the console (fail Perception < 3)->console_no_keycard]]
+[[Study the map on the monitor->study_map]]
+[[Hack into the security system (requires Intelligence 4+)->hack_security]]
+[[Go back and try the corridor instead->corridor]]
+
+:: find_keycard
+Your sharp eyes spot it immediately — wedged between two monitors, a keycard with 'LEVEL 1 ACCESS' printed on it. You pocket it.
+
+The console also has a map display and the exit door is right there.
+
+(Gives item: Keycard)
+
+[[Try the exit door->exit_door]]
+[[Study the map on the monitor->study_map]]
+[[Go back and try the corridor instead->corridor]]
+
+:: console_no_keycard
+You look over the console but nothing useful catches your eye — just old coffee rings and faded paperwork. The monitors show a map and there's the exit door at the far end.
+
+[[Try the exit door->exit_door]]
+[[Study the map on the monitor->study_map]]
+[[Go back and try the corridor instead->corridor]]
+
+:: study_map
+The map shows three levels. You are on Level 2. Level 1 above leads to the surface exit — that must be behind the locked door. Level 3 below is marked in red with the words 'CONTAINMENT - DO NOT ENTER'.
+
+The corridor from the starting room leads down to Level 3. A vent shaft on the map seems to connect this control room to Level 1 directly.
+
+You also notice a small armoury marked on this level, just off the main corridor.
+
+[[Try the exit door->exit_door]]
+[[Try to find the vent shaft->vent_shaft]]
+[[Search for the armoury->find_armoury]]
+[[Go explore Level 3 through the corridor->corridor]]
+
+:: hack_security
+You sit at the console and start working through the security system. The interface is old but familiar — military-grade encryption from the 1990s.
+
+Your fingers fly across the keyboard. Firewalls fall. Passwords crack. Within minutes, you have full access.
+
+The system reveals everything: floor plans, experiment logs, security camera feeds. You find a camera showing an unlocked emergency exit on this floor — just down a side hallway you hadn't noticed.
+
+You also find a log entry: 'Subject 7 escaped containment. All personnel evacuate immediately.' The timestamp is three days ago.
+
+[[Head to the emergency exit->exit_door]]
+[[Download the experiment logs to a USB drive->download_logs]]
+
+:: download_logs
+You find a USB drive in the desk drawer and start copying files. The progress bar crawls forward.
+
+80%... 90%... 95%...
+
+A crash echoes from somewhere deep in the facility. The lights flicker.
+
+100%. You grab the drive and run for the emergency exit. The door opens easily and you stumble into the night.
+
+Weeks later, the files you recovered would blow the story wide open. But for now, you just breathe the cool air and walk toward the distant glow of a town.
+
+[[Play again->Start]]
+
+:: find_armoury
+You follow the map's markings down a short side corridor. Behind a reinforced door — thankfully unlocked — you find a small armoury. Most of the racks are empty, but a single pistol remains, along with a magazine of ammunition.
+
+You check the chamber, load it, and tuck the gun into your waistband. It's heavy and cold against your back, but reassuring.
+
+(Gives item: Gun)
+
+[[Head back to the control room->metal_door]]
+[[Go explore Level 3 through the corridor->corridor]]
+
+:: exit_door
+You reach the heavy door marked 'EXIT - AUTHORIZED PERSONNEL ONLY'. A keycard reader blinks red beside it.
+
+[[Swipe the keycard (requires Keycard)->exit_escape]]
+[[Go back — you need to find a keycard->metal_door]]
+
+:: exit_escape
+You swipe the keycard. A green light blinks and the heavy door slides open with a hiss. Cold night air rushes in.
+
+You step outside onto a hillside overlooking a quiet valley bathed in moonlight. You're free. Behind you, the facility hums on, indifferent to your escape.
+
+You take a deep breath and walk into the night.
+
+[[Play again->Start]]
+
+:: corridor
+You step into the corridor. The darkness swallows you almost immediately. You trail your hand along the cold wall to guide yourself.
+
+After what feels like minutes, you reach a fork. A faint blue glow pulses from the left path. The right path carries the distant echo of dripping water.
+
+[[Follow the blue glow->blue_glow]]
+[[Follow the sound of water->water_path]]
+[[Listen carefully for other sounds (requires Perception 5+)->hidden_passage]]
+[[Turn back to the starting room->Start]]
+
+:: blue_glow
+You follow the blue glow and enter a vast underground chamber. Luminescent fungi cover the walls, painting everything in an eerie blue light.
+
+In the center of the chamber sits a strange crystalline structure, pulsing gently. As you approach, you feel a warmth in your chest and hear whispers at the edge of your mind.
+
+The crystal seems to be calling to you.
+
+[[Touch the crystal->touch_crystal]]
+[[Back away and take the water path->water_path]]
+
+:: touch_crystal
+You reach out and touch the crystal. A surge of energy courses through you. Visions flash before your eyes — the facility being built, experiments, people in lab coats, something escaping containment.
+
+When the visions fade, you realize you can sense the layout of the entire facility. Every door, every path, every exit is clear in your mind.
+
+But you also sense something else. Something on Level 3. And it knows you're here now.
+
+[[Rush to the nearest exit — the water path->water_path]]
+[[Descend to Level 3 to face whatever is down there->level_3]]
+
+:: water_path
+You follow the sound of water. The tunnel opens into a natural cave where an underground stream flows steadily toward a crack of pale light in the distance.
+
+The water is knee-deep and cold, but the light ahead is unmistakable — it's daylight. You wade forward, and the crack widens into an opening.
+
+You emerge at the base of a cliff, squinting in the morning sun. You're free.
+
+[[Play again->Start]]
+
+:: hidden_passage
+You close your eyes and listen. Beyond the blue hum and the dripping water, you catch something else — a faint draft of warm air, coming from a crack in the wall.
+
+You feel along the rock and find a narrow gap, just wide enough to squeeze through. Beyond it is a forgotten maintenance tunnel, still lit by emergency strips on the floor.
+
+The tunnel leads steadily upward. After ten minutes of walking, you push through a rusted door and find yourself on the surface — a moonlit clearing in a forest.
+
+No alarms. No creatures. Just silence and freedom.
+
+[[Play again->Start]]
+
+:: vent_shaft
+You locate the vent shaft behind a panel in the control room. It's a tight fit, but you pull yourself through.
+
+The shaft climbs steeply. Your arms burn but you keep going. After a grueling climb, you kick out a grate and tumble onto a concrete floor.
+
+You're in a garage. A rusted truck sits by a large roller door. Moonlight seeps through the cracks.
+
+[[Pry the roller door open with brute force (requires Strength 5+)->exit_door]]
+[[Try to open the roller door->exit_door]]
+[[Search the truck->search_truck]]
+
+:: search_truck
+The truck's cabin is unlocked. Inside you find keys in the ignition and a map with a route marked to a nearby town. But the garage roller door has an electronic lock — it needs a keycard to open.
+
+[[Swipe the keycard and drive out (requires Keycard)->truck_escape]]
+[[Go back — you need to find a keycard->metal_door]]
+
+:: truck_escape
+You swipe the keycard on the roller door panel. It beeps and the door grinds upward, revealing a dirt road under a star-filled sky.
+
+You turn the key. The engine coughs, sputters, then roars to life. The fuel gauge reads half-full.
+
+You drive into the night, leaving the facility behind for good.
+
+[[Play again->Start]]
+
+:: level_3
+You descend deeper into the facility. Level 3 is colder. The lights here are red and most are broken.
+
+At the end of a long hallway, you find a massive containment chamber. The glass is shattered. Whatever was held here is long gone.
+
+But on the floor, scratched into the metal, are the words: 'WE SHOULD NEVER HAVE DUG THIS DEEP.'
+
+A sound behind you. Breathing. Not your own.
+
+[[Raise your gun and fire (requires Gun)->shoot_creature]]
+[[Stand your ground and face the creature (requires Endurance 5+)->face_creature]]
+[[Sprint for the exit (requires Agility 4+)->sprint_exit]]
+[[Run in a panic->panic_run]]
+
+:: shoot_creature
+You spin around, gun already raised. In the red half-light you see it — a towering, gaunt figure with too-long arms and skin like cracked stone.
+
+It lunges. You fire.
+
+The shot echoes through the corridor like thunder. The creature staggers, shrieks — a sound like tearing metal — and collapses. It twitches once, then goes still.
+
+Your hands are shaking. But it's dead. You step over the body and find a maintenance ladder behind the containment chamber.
+
+You climb. You climb until you see sky.
+
+You emerge into cold, sweet air. Whatever that thing was, it won't follow anyone else.
+
+(Uses item: Gun)
+
+[[Play again->Start]]
+
+:: face_creature
+You steel yourself and turn around. In the red half-light, you see it — a towering, gaunt figure with too-long arms and skin like cracked stone.
+
+It tilts its head. Studying you. You don't flinch.
+
+Minutes pass. Or maybe hours. Then it steps aside, revealing a passage behind it — one not on any map. The creature watches as you walk through.
+
+The passage leads to a ladder. The ladder leads to the sky.
+
+You emerge into dawn, forever changed by what you faced below.
+
+[[Play again->Start]]
+
+:: sprint_exit
+Your reflexes kick in before your fear does. You pivot and sprint — ducking under pipes, vaulting over debris, taking corners at full speed.
+
+The breathing follows you, but you're faster. You burst through door after door, up staircases, through a final fire exit —
+
+Cold air. Stars. Grass under your feet.
+
+You don't stop until your legs give out on a hillside, the facility far behind you.
+
+[[Play again->Start]]
+
+:: panic_run
+You run. You run faster than you've ever run, through corridors that blur together, up stairs, through doors — until you burst outside into cold, sweet air.
+
+You don't stop running until the facility is just a dot on the horizon. You're alive, but shaken to your core.
+
+[[Play again->Start]]
+
+:: search_room
+You fumble around the room but don't find much of use. The walls are bare and the floor seems solid. Nothing here but dust and shadows.
+
+[[Try the metal door->metal_door]]
+[[Head into the corridor->corridor]]
+
+:: search_room_thorough
+Your sharp senses guide you. You notice a loose floor tile that others might miss. Underneath, you find a flashlight — still working — and a crumpled note.
+
+The note reads: 'If you're reading this, don't trust the blue light. The water is the way out. - M'
+
+You pocket the flashlight and the note.
+
+(Gives item: Flashlight)
+
+[[Try the metal door->metal_door]]
+[[Head into the corridor with your flashlight->corridor]]
