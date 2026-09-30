@@ -8,6 +8,7 @@ extends Node
 #   "text"       : String — the story passage
 #   "choices"    : Array of { "text", "next", optional "require_stat"/"require_value"/"require_item" }
 #   "gives_item" : (optional) String — item added to inventory when entering this node
+#   "uses_item"  : (optional) String — item consumed when entering this node
 
 const STORY_DIR := "res://data/story/"
 

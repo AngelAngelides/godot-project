@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://1sl3fdmehgqb"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/story_data.gd" id="2"]
-[ext_resource type="Theme" path="res://themes/game_theme.tres" id="3"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="GameManagerScript"]
+[ext_resource type="Script" path="res://scripts/story_data.gd" id="StoryDataScript"]
+[ext_resource type="Theme" path="res://themes/game_theme.tres" id="GameTheme"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -11,11 +11,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3")
-script = ExtResource("1")
+theme = ExtResource("GameTheme")
+script = ExtResource("GameManagerScript")
 
 [node name="StoryData" type="Node" parent="."]
-script = ExtResource("2")
+script = ExtResource("StoryDataScript")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

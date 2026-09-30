@@ -9,6 +9,7 @@
 		]
 	},
 	"shoot_creature": {
+		"uses_item": "Gun",
 		"text": "You spin around, gun already raised. In the red half-light you see it — a towering, gaunt figure with too-long arms and skin like cracked stone.\n\nIt lunges. You fire.\n\nThe shot echoes through the corridor like thunder. The creature staggers, shrieks — a sound like tearing metal — and collapses. It twitches once, then goes still.\n\nYour hands are shaking. But it's dead. You step over the body and find a maintenance ladder behind the containment chamber.\n\nYou climb. You climb until you see sky.\n\nYou emerge into cold, sweet air. Whatever that thing was, it won't follow anyone else.",
 		"choices": [
 			{"text": "Play again", "next": "start"}

@@ -1,0 +1,17 @@
+{
+	"Flashlight": {
+		"display_name": "Flashlight",
+		"consumable": false,
+		"max_uses": -1
+	},
+	"Gun": {
+		"display_name": "Pistol",
+		"consumable": true,
+		"max_uses": 6
+	},
+	"Keycard": {
+		"display_name": "Keycard",
+		"consumable": false,
+		"max_uses": -1
+	}
+}

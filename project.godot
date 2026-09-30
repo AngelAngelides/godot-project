@@ -26,6 +26,7 @@ window/handheld/orientation=1
 [autoload]
 
 PlayerData="*res://scripts/player_data.gd"
+ItemDatabase="*res://scripts/item_database.gd"
 
 [gui]
 

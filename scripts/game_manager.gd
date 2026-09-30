@@ -36,6 +36,11 @@ func _display_node(node_key: String) -> void:
 		PlayerData.add_item(data["gives_item"])
 		_update_inventory_display()
 
+	# Consume items used by this node (e.g. firing the gun costs a bullet)
+	if data.has("uses_item"):
+		PlayerData.use_item(data["uses_item"])
+		_update_inventory_display()
+
 	# Update story text — replace {player_name} placeholder
 	var story_text: String = data["text"]
 	story_text = story_text.replace("{player_name}", PlayerData.player_name)
