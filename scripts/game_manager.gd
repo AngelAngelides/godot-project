@@ -1,5 +1,7 @@
 extends Control
 
+const ChoiceButtonScene := preload("res://scenes/ChoiceButton.tscn")
+
 @onready var story_data: Node = $StoryData
 @onready var story_label: RichTextLabel = $MarginContainer/VBoxContainer/StoryPanel/MarginContainer/ScrollContainer/StoryLabel
 @onready var scroll_container: ScrollContainer = $MarginContainer/VBoxContainer/StoryPanel/MarginContainer/ScrollContainer
@@ -85,11 +87,8 @@ func _display_node(node_key: String) -> void:
 		var next_key: String = choice.get("next", "")
 		var has_stat_check: bool = choice.has("stat_check")
 
-		var button := Button.new()
+		var button := ChoiceButtonScene.instantiate()
 		button.text = choice["text"]
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.custom_minimum_size = Vector2(0, 56)
-		button.add_theme_font_size_override("font_size", 18)
 		if has_stat_check:
 			button.pressed.connect(_on_stat_check_choice.bind(choice["stat_check"]))
 		else:
@@ -97,11 +96,8 @@ func _display_node(node_key: String) -> void:
 		choices_container.add_child(button)
 
 func _make_disabled_button(text: String) -> Button:
-	var button := Button.new()
+	var button := ChoiceButtonScene.instantiate()
 	button.text = text
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.custom_minimum_size = Vector2(0, 56)
-	button.add_theme_font_size_override("font_size", 16)
 	button.disabled = true
 	return button
 

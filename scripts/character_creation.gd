@@ -1,13 +1,14 @@
 extends Control
 
+const StatRowScene := preload("res://scenes/StatRow.tscn")
+
 @onready var name_input: LineEdit = $MarginContainer/VBoxContainer/NameSection/NameInput
 @onready var points_label: Label = $MarginContainer/VBoxContainer/PointsLabel
 @onready var stats_container: VBoxContainer = $MarginContainer/VBoxContainer/StatsScrollContainer/StatsContainer
 @onready var start_button: Button = $MarginContainer/VBoxContainer/StartButton
 @onready var error_label: Label = $MarginContainer/VBoxContainer/ErrorLabel
 
-var stat_labels: Dictionary = {}
-var stat_values: Dictionary = {}
+var stat_rows: Dictionary = {}
 
 func _ready() -> void:
 	PlayerData.reset_stats()
@@ -19,39 +20,14 @@ func _ready() -> void:
 
 func _build_stat_rows() -> void:
 	for stat_name in PlayerData.stats:
-		var row := HBoxContainer.new()
-		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		# Stat name label
-		var label := Label.new()
-		label.text = stat_name
-		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		label.custom_minimum_size = Vector2(140, 0)
-		row.add_child(label)
-
-		# Minus button
-		var minus_btn := Button.new()
-		minus_btn.text = " - "
-		minus_btn.custom_minimum_size = Vector2(48, 48)
-		minus_btn.pressed.connect(_on_minus_pressed.bind(stat_name))
-		row.add_child(minus_btn)
-
-		# Value label
-		var value_label := Label.new()
-		value_label.text = str(PlayerData.stats[stat_name])
-		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		value_label.custom_minimum_size = Vector2(40, 0)
-		row.add_child(value_label)
-		stat_labels[stat_name] = value_label
-
-		# Plus button
-		var plus_btn := Button.new()
-		plus_btn.text = " + "
-		plus_btn.custom_minimum_size = Vector2(48, 48)
-		plus_btn.pressed.connect(_on_plus_pressed.bind(stat_name))
-		row.add_child(plus_btn)
-
+		var row: HBoxContainer = StatRowScene.instantiate()
 		stats_container.add_child(row)
+		row.set_stat_name(stat_name)
+		row.set_value(PlayerData.get_stat(stat_name))
+		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.minus_pressed.connect(_on_minus_pressed.bind(stat_name))
+		row.plus_pressed.connect(_on_plus_pressed.bind(stat_name))
+		stat_rows[stat_name] = row
 
 func _on_plus_pressed(stat_name: String) -> void:
 	if PlayerData.get_points_remaining() <= 0:
@@ -70,8 +46,8 @@ func _on_minus_pressed(stat_name: String) -> void:
 	_update_points_display()
 
 func _update_stat_display(stat_name: String) -> void:
-	if stat_labels.has(stat_name):
-		stat_labels[stat_name].text = str(PlayerData.get_stat(stat_name))
+	if stat_rows.has(stat_name):
+		stat_rows[stat_name].set_value(PlayerData.get_stat(stat_name))
 
 func _update_points_display() -> void:
 	points_label.text = "Points remaining: %d" % PlayerData.get_points_remaining()

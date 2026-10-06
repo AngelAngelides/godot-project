@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2xkn4q7k8p1w"]
+
+[ext_resource type="Theme" path="res://themes/game_theme.tres" id="GameTheme"]
+
+[node name="ChoiceButton" type="Button"]
+custom_minimum_size = Vector2(0, 56)
+size_flags_horizontal = 3
+theme = ExtResource("GameTheme")
+theme_override_font_sizes/font_size = 18
+text = "test this is a long text it should break to fit the vieport correctly"
+autowrap_mode = 2
